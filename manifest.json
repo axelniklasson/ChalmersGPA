@@ -1,14 +1,16 @@
 {
   "manifest_version": 2,
-
   "name": "Chalmers GPA",
-  "description": "This extension calculates the GPA for a user when logged in to the student portal.",
+  "description": "This extension calculates the GPA for a user when logged in to the student portal and look at the \"All results\" page.",
   "version": "1.0",
-
-  "browser_action": { },
   "permissions": [
     "activeTab"
   ],
+  "icons": { 
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  },
   "content_scripts": [
   {
     "matches": [
