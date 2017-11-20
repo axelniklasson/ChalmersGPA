@@ -1,5 +1,4 @@
 var parent = document.getElementsByClassName("box ListingOfResults-ascx")[0].childNodes[1];
-console.log(parent);
 var tables = Array.prototype.slice.call(parent.getElementsByTagName("table"), 0);
 
 var grandTotalCredits = 0;
