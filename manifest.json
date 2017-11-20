@@ -1,0 +1,20 @@
+{
+  "manifest_version": 2,
+
+  "name": "Chalmers GPA",
+  "description": "This extension calculates the GPA for a user when logged in to the student portal.",
+  "version": "1.0",
+
+  "browser_action": { },
+  "permissions": [
+    "activeTab"
+  ],
+  "content_scripts": [
+  {
+    "matches": [
+      "https://student.portal.chalmers.se/sv/chalmersstudier/minaresultatochintyg/Sidor/Resultatforteckning.aspx"
+    ],
+    "js": ["chalmersGPA.js"]
+  }
+]
+}
