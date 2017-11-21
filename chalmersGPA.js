@@ -16,6 +16,8 @@ tables.forEach(function(table) {
 
   var totalCredits = 0;
   var totalCompareVal = 0;
+
+  /* Loop through rows and calculate GPA for valid values */
   rows.forEach(function(row) {
     var grade = parseInt(row.getElementsByTagName("td")[3].textContent);
 
@@ -26,6 +28,7 @@ tables.forEach(function(table) {
     }
   });
 
+  /* Add GPA to end of table if its a valid number */
   if (!isNaN(totalCompareVal / totalCredits)) {
     var lastRow = table.rows[table.rows.length - 1];
     var cell = lastRow.childNodes[1];
@@ -38,11 +41,12 @@ tables.forEach(function(table) {
   }
 });
 
+/* Add total GPA at end of page */
 parent.insertBefore(createElement("span", (accumulatedCompareVal / accumulatedCredits).toFixed(1)), parent.children[6]);
 parent.insertBefore(createElement("b", "SNITTBETYG: &nbsp;"), parent.children[6]);
 parent.insertBefore(createElement("br"), parent.children[8]);
 
-/* Helper method that created HTML element with content set to innerHTML if specified */
+/* Helper method that creates HTML element with content set to innerHTML if specified */
 function createElement(type, content) {
   var el = document.createElement(type);
   if (content) {
