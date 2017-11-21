@@ -34,7 +34,7 @@ tables.forEach(function(table) {
     var cell = lastRow.childNodes[1];
 
     cell.appendChild(createElement("b", "SNITTBETYG: &nbsp;"));
-    cell.appendChild(createElement("span", (totalCompareVal / totalCredits).toFixed(1)));
+    cell.appendChild(createElement("span", (totalCompareVal / totalCredits).toFixed(2).replace(".", ",")));
 
     accumulatedCredits += totalCredits;
     accumulatedCompareVal += totalCompareVal;
@@ -42,7 +42,7 @@ tables.forEach(function(table) {
 });
 
 /* Add total GPA at end of page */
-parent.insertBefore(createElement("span", (accumulatedCompareVal / accumulatedCredits).toFixed(1)), parent.children[6]);
+parent.insertBefore(createElement("span", (accumulatedCompareVal / accumulatedCredits).toFixed(2).replace(".", ",")), parent.children[6]);
 parent.insertBefore(createElement("b", "SNITTBETYG: &nbsp;"), parent.children[6]);
 parent.insertBefore(createElement("br"), parent.children[8]);
 
