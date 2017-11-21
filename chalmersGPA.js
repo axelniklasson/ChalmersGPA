@@ -1,15 +1,14 @@
 var parent = document.getElementsByClassName("box ListingOfResults-ascx")[0].childNodes[1];
 var tables = Array.prototype.slice.call(parent.getElementsByTagName("table"), 0);
 
-var grandTotalCredits = 0;
-var grandTotalCompareVal = 0;
+var accumulatedCredits = 0;
+var accumulatedCompareVal = 0;
 
-for (var i = 0; i < tables.length; i++) {
-  var table = tables[i];
+tables.forEach(function(table) {
   var bolds = Array.prototype.slice.call(table.getElementsByTagName("tbody")[0].getElementsByTagName("b"), 0);
   var rows = [];
 
-  // Remove every other element and get parent <tr>
+  // Remove every other element and get parent row
   for (var i = 0; i < bolds.length - 2; i += 1) {
     bolds.splice(i, 1);
     rows.push(bolds[i].parentElement.parentElement);
@@ -27,28 +26,27 @@ for (var i = 0; i < tables.length; i++) {
     }
   });
 
-  var lastRow = table.rows[table.rows.length - 1];
-  var cell = lastRow.childNodes[1];
+  if (!isNaN(totalCompareVal / totalCredits)) {
+    var lastRow = table.rows[table.rows.length - 1];
+    var cell = lastRow.childNodes[1];
 
-  var bold = document.createElement("b");
-  bold.innerHTML = "SNITTBETYG: &nbsp;";
-  var span = document.createElement("span");
-  span.innerHTML = totalCompareVal / totalCredits;
+    cell.appendChild(createElement("b", "SNITTBETYG: &nbsp;"));
+    cell.appendChild(createElement("span", (totalCompareVal / totalCredits).toFixed(1)));
 
-  cell.appendChild(bold);
-  cell.appendChild(span);
+    accumulatedCredits += totalCredits;
+    accumulatedCompareVal += totalCompareVal;
+  }
+});
 
-  grandTotalCredits += totalCredits;
-  grandTotalCompareVal += totalCompareVal;
+parent.insertBefore(createElement("span", (accumulatedCompareVal / accumulatedCredits).toFixed(1)), parent.children[6]);
+parent.insertBefore(createElement("b", "SNITTBETYG: &nbsp;"), parent.children[6]);
+parent.insertBefore(createElement("br"), parent.children[8]);
+
+/* Helper method that created HTML element with content set to innerHTML if specified */
+function createElement(type, content) {
+  var el = document.createElement(type);
+  if (content) {
+    el.innerHTML = content;
+  }
+  return el;
 }
-
-
-var bold = document.createElement("b");
-bold.innerHTML = "SNITTBETYG: &nbsp;";
-var span = document.createElement("span");
-span.innerHTML = grandTotalCompareVal / grandTotalCredits;
-var br = document.createElement("br");
-
-parent.insertBefore(span, parent.children[6]);
-parent.insertBefore(bold, parent.children[6]);
-parent.insertBefore(br, parent.children[8]);
