@@ -1,5 +1,5 @@
 # ChalmersGPA
-Chrome plugin intended to automatically calculate the GPA for an authenticated user at Chalmers Student Portal.
+Chrome plugin intended to automatically calculate the GPA for an authenticated user at Chalmers Student Portal. No information is saved or stored anywhere - all code is available to check in the file ``chalmersGPA.js``. Trust me, I really don't care about your GPA.
 
 ## How it looks
 ![alt text](screenshot.png)
